@@ -24,6 +24,8 @@
 <body>
 
 <?php
+include('Textile.class.php');
+$Textile = new Textile;
 $files = array();
 $handle=opendir('patterns');
 while (false !== ($file = readdir($handle))):
@@ -35,7 +37,7 @@ sort($files);
 foreach ($files as $file):
     echo '<div class="pattern">';
     echo '<div class="display">';
-    include('patterns/'.$file);
+    echo $Textile->TextileThis(file_get_contents('patterns/'.$file));
     echo '</div>';
     echo '<div class="source">';
     echo '<textarea rows="6" cols="30">';
@@ -46,6 +48,7 @@ foreach ($files as $file):
     echo '</div>';
 endforeach;
 ?>
+
 
 </body>
 </html>
